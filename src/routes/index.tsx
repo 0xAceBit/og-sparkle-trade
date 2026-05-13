@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const ROTATING_WORDS = ["agentic", "scalable", "secure", "open", "on-chain"];
+const ROTATING_WORDS = ["agentic", "scalable", "secure", "open", "onchain"];
 
 function Landing() {
   const { agents, isDemo } = useAgents();
@@ -117,7 +117,7 @@ function Landing() {
             transition={{ delay: 0.5 }}
             className="mt-10 max-w-xl text-base text-muted-foreground sm:text-lg"
           >
-            A premium, fully on-chain marketplace for autonomous agents. Built
+            A premium, fully onchain marketplace for autonomous agents. Built
             natively on the 0G Network — provenance verified, settlements native,
             curation editorial.
           </motion.p>
@@ -244,7 +244,7 @@ function Landing() {
               {
                 n: "03",
                 t: "Transact",
-                d: "Pay in native 0G. Your transaction settles in seconds with on-chain provenance.",
+                d: "Pay in native 0G. Your transaction settles in seconds with onchain provenance.",
               },
             ].map((s) => (
               <div key={s.n} className="border-t border-foreground pt-6">

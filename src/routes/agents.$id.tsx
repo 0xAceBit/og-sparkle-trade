@@ -13,7 +13,7 @@ export const Route = createFileRoute("/agents/$id")({
   head: ({ params }) => ({
     meta: [
       { title: `Agent #${params.id} — 0G Agentic` },
-      { name: "description", content: "Agent details and on-chain provenance." },
+      { name: "description", content: "Agent details and onchain provenance." },
       { property: "og:title", content: `Agent #${params.id} — 0G Agentic` },
     ],
   }),
@@ -165,7 +165,7 @@ function AgentDetail() {
               )}
             </div>
             <p className="mt-3 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              Settled on-chain · Non-custodial
+              Settled onchain · Non-custodial
             </p>
           </div>
         </aside>
