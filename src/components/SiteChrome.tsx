@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import brandLogo from "@/assets/brand-logo.png";
 
 const nav = [
   { to: "/marketplace", label: "Marketplace" },
@@ -13,7 +14,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-full bg-primary" />
+          <img src={brandLogo} alt="0G Agentic Marketplace" className="h-8 w-8 rounded-full object-cover" />
           <span className="font-display text-xl">0G&nbsp;Agentic</span>
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
