@@ -6,6 +6,7 @@ import { useAgents } from "@/hooks/useMarketplace";
 import { AgentCard } from "@/components/AgentCard";
 import blobLeft from "@/assets/blob-left.png";
 import blobRight from "@/assets/blob-right.png";
+import { startAmbient, stopAmbient } from "@/lib/ambient";
 
 export const Route = createFileRoute("/")({
   head: () => ({
