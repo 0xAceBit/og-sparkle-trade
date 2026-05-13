@@ -11,9 +11,9 @@ import { ogMainnet } from "@/lib/chain";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard — 0G Agentic" },
+      { title: "Dashboard, 0G Agentic" },
       { name: "description", content: "Your agents, purchases, and onchain activity." },
-      { property: "og:title", content: "Dashboard — 0G Agentic" },
+      { property: "og:title", content: "Dashboard, 0G Agentic" },
     ],
   }),
   component: Dashboard,
@@ -67,7 +67,7 @@ function Dashboard() {
           </Stat>
           <Stat label="Balance">
             <span className="font-display text-2xl">
-              {balance ? `${Number(balance.formatted).toLocaleString(undefined, { maximumFractionDigits: 4 })} 0G` : "—"}
+              {balance ? `${Number(balance.formatted).toLocaleString(undefined, { maximumFractionDigits: 4 })} 0G` : "-"}
             </span>
           </Stat>
           <Stat label="Listings">
