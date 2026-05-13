@@ -1,113 +1,202 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Volume2, VolumeX, RotateCw } from "lucide-react";
 import { useAgents } from "@/hooks/useMarketplace";
 import { AgentCard } from "@/components/AgentCard";
+import blobLeft from "@/assets/blob-left.png";
+import blobRight from "@/assets/blob-right.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "0G Agentic Marketplace — On-chain agents on 0G Network" },
+      { title: "0G Agentic Marketplace — Autonomous agents on 0G Mainnet" },
       {
         name: "description",
         content:
-          "Discover, list, and acquire autonomous agents settled on 0G Mainnet. A premium marketplace for the agentic economy.",
+          "A premium marketplace for autonomous agents — discover, list, and acquire on 0G Mainnet.",
       },
       { property: "og:title", content: "0G Agentic Marketplace" },
-      { property: "og:description", content: "An editorial marketplace for autonomous agents on 0G." },
+      { property: "og:description", content: "Autonomous agents settled on 0G Mainnet." },
       { property: "og:type", content: "website" },
     ],
   }),
   component: Landing,
 });
 
+const ROTATING_WORDS = ["agentic", "scalable", "secure", "open", "on-chain"];
+
 function Landing() {
   const { agents, isDemo } = useAgents();
   const featured = agents.slice(0, 3);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [muted, setMuted] = useState(true);
+
+  useEffect(() => {
+    const t = setInterval(() => setWordIndex((i) => (i + 1) % ROTATING_WORDS.length), 2400);
+    return () => clearInterval(t);
+  }, []);
 
   return (
     <div>
-      {/* Hero */}
-      <section className="border-b border-border">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-24 lg:grid-cols-12 lg:py-32">
-          <div className="lg:col-span-8">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-xs uppercase tracking-[0.24em] text-muted-foreground"
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-paper">
+        {/* Blobs */}
+        <motion.img
+          src={blobLeft}
+          alt=""
+          aria-hidden
+          width={1024}
+          height={1024}
+          initial={{ opacity: 0, x: -40, scale: 0.95 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          className="pointer-events-none absolute -left-[14%] top-[8%] hidden w-[34vw] max-w-[520px] select-none md:block"
+        />
+        <motion.img
+          src={blobRight}
+          alt=""
+          aria-hidden
+          width={1024}
+          height={1024}
+          initial={{ opacity: 0, x: 40, scale: 0.95 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          className="pointer-events-none absolute -right-[12%] top-[18%] hidden w-[36vw] max-w-[560px] select-none md:block"
+        />
+        {/* Mobile: stack blobs behind text */}
+        <img
+          src={blobLeft}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute -left-24 top-12 w-72 opacity-90 md:hidden"
+        />
+        <img
+          src={blobRight}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute -right-24 bottom-12 w-72 opacity-90 md:hidden"
+        />
+
+        <div className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col items-center justify-center px-6 py-24 text-center">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-xs uppercase tracking-[0.32em] text-muted-foreground"
+          >
+            The 0G Agentic Marketplace
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            className="mt-8 font-display text-[14vw] leading-[0.9] sm:text-[10vw] md:text-[8.5vw] lg:text-[7.5rem]"
+          >
+            <span className="block">More</span>
+            <span className="relative mt-2 inline-block">
+              <AnimatePresence mode="wait">
+                <motion.em
+                  key={ROTATING_WORDS[wordIndex]}
+                  initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="block font-normal italic text-primary"
+                >
+                  {ROTATING_WORDS[wordIndex]}.
+                </motion.em>
+              </AnimatePresence>
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-10 max-w-xl text-base text-muted-foreground sm:text-lg"
+          >
+            A premium, fully on-chain marketplace for autonomous agents. Built
+            natively on the 0G Network — provenance verified, settlements native,
+            curation editorial.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mt-12 flex flex-wrap items-center justify-center gap-3"
+          >
+            <Link
+              to="/marketplace"
+              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-all hover:scale-[1.02] hover:bg-foreground/90"
             >
-              Issue 01 · The Agentic Economy
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 font-display text-6xl leading-[0.95] sm:text-7xl lg:text-[8rem]"
+              Launch app
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              to="/create"
+              className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-background px-7 py-3.5 text-sm font-medium text-foreground transition-all hover:border-foreground"
             >
-              A marketplace
-              <br />
-              for autonomous
-              <br />
-              <em className="font-normal italic text-primary">agents.</em>
-            </motion.h1>
-            <p className="mt-8 max-w-xl text-lg text-muted-foreground">
-              Discover, list, and acquire autonomous agents settled directly on the
-              0G Network. Provenance is on-chain. Payments are native.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                to="/marketplace"
-                className="inline-flex items-center gap-2 bg-foreground px-6 py-3 text-sm text-background transition-colors hover:bg-foreground/90"
-              >
-                Browse marketplace <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/create"
-                className="inline-flex items-center gap-2 border border-foreground px-6 py-3 text-sm text-foreground transition-colors hover:bg-foreground hover:text-background"
-              >
-                List your agent
-              </Link>
-            </div>
-          </div>
-          <aside className="lg:col-span-4 lg:border-l lg:border-border lg:pl-8">
-            <dl className="space-y-6 text-sm">
-              <div>
-                <dt className="uppercase tracking-[0.18em] text-muted-foreground">Network</dt>
-                <dd className="mt-1 font-display text-xl">0G Mainnet</dd>
-              </div>
-              <div>
-                <dt className="uppercase tracking-[0.18em] text-muted-foreground">Chain ID</dt>
-                <dd className="mt-1 font-mono">16661</dd>
-              </div>
-              <div>
-                <dt className="uppercase tracking-[0.18em] text-muted-foreground">Native token</dt>
-                <dd className="mt-1 font-mono">0G</dd>
-              </div>
-              <div>
-                <dt className="uppercase tracking-[0.18em] text-muted-foreground">Listed agents</dt>
-                <dd className="mt-1 font-display text-xl">{agents.length}</dd>
-              </div>
-            </dl>
-            {isDemo && (
-              <p className="mt-8 border-t border-border pt-4 text-xs text-muted-foreground">
-                Showing demo data. Wire your deployed contract address in
-                <code className="mx-1 font-mono">src/lib/contracts/marketplace.ts</code>
-                to read live state.
-              </p>
-            )}
-          </aside>
+              List your agent
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="absolute bottom-6 right-6 flex items-center gap-2"
+          >
+            <button
+              onClick={() => setWordIndex((i) => (i + 1) % ROTATING_WORDS.length)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/70 backdrop-blur transition-colors hover:bg-card"
+              aria-label="Rotate headline"
+            >
+              <RotateCw className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setMuted((m) => !m)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/70 backdrop-blur transition-colors hover:bg-card"
+              aria-label="Toggle audio"
+            >
+              {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+            </button>
+          </motion.div>
         </div>
       </section>
 
-      {/* Featured */}
+      {/* MARQUEE STATS */}
+      <section className="border-y border-border bg-background">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-border md:grid-cols-4">
+          {[
+            { k: "Network", v: "0G Mainnet" },
+            { k: "Chain ID", v: "16661" },
+            { k: "Native token", v: "0G" },
+            { k: "Listed agents", v: agents.length.toString() },
+          ].map((s) => (
+            <div key={s.k} className="px-6 py-8">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                {s.k}
+              </p>
+              <p className="mt-2 font-display text-2xl">{s.v}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FEATURED */}
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-20">
+        <div className="mx-auto max-w-7xl px-6 py-24">
           <div className="flex items-end justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
                 Featured
               </p>
-              <h2 className="mt-3 font-display text-4xl">This week's selection</h2>
+              <h2 className="mt-3 font-display text-4xl sm:text-5xl">
+                This week's selection
+              </h2>
             </div>
             <Link
               to="/marketplace"
@@ -121,16 +210,23 @@ function Landing() {
               <AgentCard key={a.id.toString()} agent={a} index={i} />
             ))}
           </div>
+          {isDemo && (
+            <p className="mt-8 text-xs text-muted-foreground">
+              Showing demo data. Connect your deployed contract address in{" "}
+              <code className="font-mono">src/lib/contracts/marketplace.ts</code>{" "}
+              to see live listings.
+            </p>
+          )}
         </div>
       </section>
 
-      {/* How it works */}
+      {/* HOW IT WORKS */}
       <section>
         <div className="mx-auto max-w-7xl px-6 py-24">
           <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
             How it works
           </p>
-          <h2 className="mt-3 max-w-2xl font-display text-4xl">
+          <h2 className="mt-3 max-w-2xl font-display text-4xl sm:text-5xl">
             Three steps. Zero intermediaries.
           </h2>
           <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3">
