@@ -6,6 +6,7 @@ import { useAgents } from "@/hooks/useMarketplace";
 import { AgentCard } from "@/components/AgentCard";
 import blobLeft from "@/assets/blob-left.png";
 import blobRight from "@/assets/blob-right.png";
+import { startAmbient, stopAmbient } from "@/lib/ambient";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,6 +36,10 @@ function Landing() {
   useEffect(() => {
     const t = setInterval(() => setWordIndex((i) => (i + 1) % ROTATING_WORDS.length), 2400);
     return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    return () => stopAmbient();
   }, []);
 
   return (
@@ -157,7 +162,15 @@ function Landing() {
               <RotateCw className="h-4 w-4" />
             </button>
             <button
-              onClick={() => setMuted((m) => !m)}
+              onClick={async () => {
+                if (muted) {
+                  await startAmbient();
+                  setMuted(false);
+                } else {
+                  stopAmbient();
+                  setMuted(true);
+                }
+              }}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/70 backdrop-blur transition-colors hover:bg-card"
               aria-label="Toggle audio"
             >
