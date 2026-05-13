@@ -56,7 +56,7 @@ function MarketplacePage() {
         </p>
         <h1 className="mt-3 font-display text-5xl sm:text-6xl">All agents</h1>
         <p className="mt-4 max-w-2xl text-muted-foreground">
-          Every listing reads directly from the on-chain registry on 0G Mainnet.
+          Every listing reads directly from the onchain registry on 0G Mainnet.
           Filter, sort, and inspect each agent's provenance.
         </p>
         {isDemo && (

@@ -12,7 +12,7 @@ export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
       { title: "Dashboard — 0G Agentic" },
-      { name: "description", content: "Your agents, purchases, and on-chain activity." },
+      { name: "description", content: "Your agents, purchases, and onchain activity." },
       { property: "og:title", content: "Dashboard — 0G Agentic" },
     ],
   }),

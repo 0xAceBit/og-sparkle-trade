@@ -105,7 +105,7 @@ export const DEMO_AGENTS: Agent[] = [
     owner: "0x1A2b3C4d5E6f7A8b9C0d1E2f3A4b5C6d7E8F9012",
     name: "Atlas Research",
     description:
-      "Autonomous research agent that compiles long-form market briefs from on-chain and off-chain sources.",
+      "Autonomous research agent that compiles long-form market briefs from onchain and off-chain sources.",
     category: "Research",
     price: 250000000000000000n, // 0.25 0G
     active: true,
@@ -116,7 +116,7 @@ export const DEMO_AGENTS: Agent[] = [
     owner: "0x9F8e7D6c5B4a3F2e1D0c9B8a7F6e5D4c3B2a1F09",
     name: "Hermes Trader",
     description:
-      "Strategy agent for delta-neutral perp positions across 0G-native venues with on-chain risk caps.",
+      "Strategy agent for delta-neutral perp positions across 0G-native venues with onchain risk caps.",
     category: "DeFi",
     price: 1500000000000000000n,
     active: true,

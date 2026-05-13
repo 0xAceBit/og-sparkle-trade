@@ -36,7 +36,7 @@ export function TransactionModal({
   const steps: { key: Exclude<Step, "idle">; label: string }[] = [
     { key: "confirm", label: "Confirm in wallet" },
     { key: "mining", label: "Awaiting confirmation" },
-    { key: "success", label: "Settled on-chain" },
+    { key: "success", label: "Settled onchain" },
   ];
 
   const currentIndex =
