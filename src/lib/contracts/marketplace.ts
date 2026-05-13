@@ -3,7 +3,7 @@
 // The shape below assumes a typical agent-marketplace contract.
 
 export const MARKETPLACE_ADDRESS =
-  "0x0000000000000000000000000000000000000000" as `0x${string}`;
+  "0x65d94cce3894f1482dc86877625f4129e4FF963A" as `0x${string}`;
 
 export const marketplaceAbi = [
   {
