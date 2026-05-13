@@ -67,7 +67,7 @@ function Dashboard() {
           </Stat>
           <Stat label="Balance">
             <span className="font-display text-2xl">
-              {balance ? `${Number(balance.formatted).toLocaleString(undefined, { maximumFractionDigits: 4 })} 0G` : "—"}
+              {balance ? `${Number(balance.formatted).toLocaleString(undefined, { maximumFractionDigits: 4 })} 0G` : "-"}
             </span>
           </Stat>
           <Stat label="Listings">
