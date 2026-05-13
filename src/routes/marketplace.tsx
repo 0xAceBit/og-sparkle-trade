@@ -160,7 +160,7 @@ function MarketplacePage() {
       return Number(b.id - a.id);
     });
     return list;
-  }, [agents, q, category, sort, preset, favorites, priceRange]);
+  }, [agents, q, category, sort, preset, favorites, maxPriceFilter]);
 
   // stats
   const stats = useMemo(() => {
@@ -206,9 +206,9 @@ function MarketplacePage() {
       label: preset === "trending" ? "Trending" : preset === "cheap" ? "Under 1 0G" : "Favorites",
       onClear: () => setPreset("all"),
     });
-  if (0 > 0 || maxPriceFilter < maxPrice)
+  if (maxPriceFilter < maxPrice)
     activeChips.push({
-      label: `${0} – ${maxPriceFilter} 0G`,
+      label: `≤ ${maxPriceFilter} 0G`,
       onClear: () => setMaxPriceFilter(maxPrice),
     });
 
