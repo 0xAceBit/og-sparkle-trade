@@ -66,7 +66,7 @@ function MarketplacePage() {
   const [preset, setPreset] = useState<Preset>("all");
   const [view, setView] = useState<View>("grid");
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 2]);
+  const [maxPriceFilter, setMaxPriceFilter] = useState<number>(2);
   const searchRef = useRef<HTMLInputElement>(null);
 
   // hydrate persistence
