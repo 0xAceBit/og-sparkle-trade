@@ -11,9 +11,9 @@ import { ogMainnet } from "@/lib/chain";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard, Primordial Market" },
+      { title: "Dashboard, Primordial Marketplace" },
       { name: "description", content: "Your agents, purchases, and onchain activity." },
-      { property: "og:title", content: "Dashboard, Primordial Market" },
+      { property: "og:title", content: "Dashboard, Primordial Marketplace" },
     ],
   }),
   component: Dashboard,
