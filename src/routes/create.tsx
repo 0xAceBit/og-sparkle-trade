@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useAccount } from "wagmi";
 import { parseEther } from "viem";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
