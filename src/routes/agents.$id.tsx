@@ -12,9 +12,9 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/agents/$id")({
   head: ({ params }) => ({
     meta: [
-      { title: `Agent #${params.id}, Primordial Market` },
+      { title: `Agent #${params.id}, Primordial Marketplace` },
       { name: "description", content: "Agent details and onchain provenance." },
-      { property: "og:title", content: `Agent #${params.id}, Primordial Market` },
+      { property: "og:title", content: `Agent #${params.id}, Primordial Marketplace` },
     ],
   }),
   component: AgentDetail,
