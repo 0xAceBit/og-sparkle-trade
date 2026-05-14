@@ -167,7 +167,7 @@ The app automatically prompts users to switch to 0G Mainnet if connected to anot
 4. Access direct links to your address on 0G ChainScan
 
 ### Demo Mode
-When the marketplace contract is not deployed (address is zero), the app runs in demo mode with sample data. All UI interactions work, but transactions are simulated locally.
+When the marketplace contract is not deployed (address is zero), the app runs in demo mode with sample data. All UI interactions work, but transactions are simulated locally. Right now it's published on mainnet but you can try with the Testnet version and component.
 
 ## Technologies Used
 
